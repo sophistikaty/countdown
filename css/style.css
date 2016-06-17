@@ -10,6 +10,18 @@ div#countdown span.countdown {
 	color: red;
 }
 
+div#countdownWrapper  label {
+
+	display: inline !important;
+	margin: 0px !important;
+    width: 30%;
+}
+
+div#countdownWrapper input[type='text'] {
+
+    width: 60%;
+}
+
 /*Small devices (tablets, 768px and up)*/
 /*@media (min-width: 768px) {
 }*/

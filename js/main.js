@@ -5,30 +5,64 @@ $(document).ready(function(){
 
   	// console.log('ready');
 
-  	var countdownSetup = function (){
+  	var utilSetup = function(){
+
+  		var $dateInput = $('input#cdDate');
+
+  			$dateInput.datepicker();
+
+
+  		var $goCountdown = $('button#goCountdown');
+
+  			$goCountdown.on('click', countdownSetup.bind( $goCountdown ) );
+
+
+  	}
+
+  	var stringToDate = function( dateString ){
+
+  		var utcStr = Date.parse( dateString );
+
+  		var changeDate = new Date ( utcStr )
+
+  		return changeDate;
+
+  	}
+
+  	var countdownSetup = function ( $button ){
 
 		var sessionDate = sessionStorage['date'];
 
-		if ( sessionDate ){ 
+		var changeDate = '';
 
-			var dateObj = sessionDate;
+		var title = '';
 
-		}
+		if ( ! sessionDate ) {
 
-		else {
+			var changeDate = new Date('October 8 2016');
+				changeDate.setUTCHours(20);
 
-			var weddingDate = new Date('October 8 2016');
-				weddingDate.setUTCHours(20);
-
-			var dateUTCstr = weddingDate.toGMTString();
+			var title = 'Best Day';
 
 		}
 
-		var title = 'Best Day';
+		if ( $button ){
+
+			console.log('hey');
+
+			event.stopPropagation();
+
+			changeDate = stringToDate( $( 'input#cdDate' ).val() );
+
+			var title = $('input#cdTitle').val();
+
+		}
+
+		var dateUTCstr = changeDate.toUTCString();
 
 		var headerEl = $('h2#header');
 
-		headerEl.html( title + ' ' + headerEl.html() );
+		headerEl.html( title + ' ' + 'Count Down' );
 
 		sessionStorage.setItem( 'countdownDate', dateUTCstr );
 
@@ -106,6 +140,8 @@ $(document).ready(function(){
 
 	  timeoutID = window.setTimeout( updateCountdown , 500 );
 	}
+
+	utilSetup();
 
 	countdownSetup();
 
