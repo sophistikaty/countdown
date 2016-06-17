@@ -1,2 +1,4 @@
-# larryAndKaitlynn
-Larry and Kaitlynn's Wedding Website
+Countdown widget
+
+by @sophistikaty 2016
+Kaitlynn Hendricks
